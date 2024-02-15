@@ -31,12 +31,7 @@ namespace SaltPassword
             {
                 byte[] sBytes = new byte[Length];
                 rnd.GetBytes(sBytes);
-                string salt = "";
-                foreach (byte saltByte in sBytes)
-                {
-                    salt += saltByte.ToString("x2");
-                }
-                return salt;
+                return BytesToString(sBytes);
             }
         }
 
@@ -47,15 +42,20 @@ namespace SaltPassword
             using (HashAlgorithm sha256 = SHA256.Create())
             {
                 // ComputeHash - Generate hash from the provided Text and returns it as list of bytes
-                byte[] bhash = sha256.ComputeHash(Encoding.UTF8.GetBytes(Password + Salt));
+                byte[] bHash = sha256.ComputeHash(Encoding.UTF8.GetBytes(Password + Salt));
                 // Convert byte[] to a string
-                string hash = "";
-                foreach(byte pbhash in bhash)
-                {
-                    hash+=pbhash.ToString("x2");
-                }
-                return hash.ToString();
+                return BytesToString(bHash);
             }
+        }
+
+        public string BytesToString(byte[] Bytes)
+        {
+            string result = "";
+            foreach (byte Byte in Bytes)
+            {
+                result += Byte.ToString("x2");
+            }
+            return result;
         }
     }
 }
