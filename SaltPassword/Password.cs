@@ -8,24 +8,29 @@ namespace SaltPassword
 {
     public class Password
     {
-        private SecurityHelper Instance;
+        readonly private SecurityHelper Instance;
         public string Salt { get; }
         public string HashPassword { get; }
 
         /// <summary> Creates object of password which contains <see cref="Salt"/> and <see cref="HashPassword"/></summary>
-        public Password(string Password)
+        public Password(SecurityHelper Instance, string Password, int SaltLength)
         {
-            this.Instance = SecurityHelper.GetInstance;
-            this.Salt = Instance.GenerateSalt(64);
-            this.HashPassword = Instance.GenerateHash(Password,this.Salt);
+            this.Instance = Instance;
+            this.Salt = Instance.GenerateSalt(SaltLength);
+            this.HashPassword = Instance.GenerateHash(Password, this.Salt);
         }
 
         /// <summary> Creates object of password which contains <see cref="Salt"/> and <see cref="HashPassword"/></summary>
-        public Password(string Salt, string Password)
+        public Password(SecurityHelper Instance, string Salt, string HashPassword)
         {
-            this.Instance = SecurityHelper.GetInstance;
+            this.Instance = Instance;
             this.Salt = Salt;
-            this.HashPassword = Instance.GenerateHash(Password, this.Salt);
+            this.HashPassword = HashPassword;
+        }
+
+        public bool IsSamePassword(string EnteredPassword)
+        {
+            return Instance.IsSamePassword(this.HashPassword, this.Salt, EnteredPassword);
         }
     }
 }

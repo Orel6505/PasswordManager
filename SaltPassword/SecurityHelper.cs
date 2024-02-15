@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Security.Cryptography;
 using System.Security.Policy;
 using System.Text;
@@ -56,6 +57,13 @@ namespace SaltPassword
                 result += Byte.ToString("x2");
             }
             return result;
+        }
+
+        public bool IsSamePassword(string HashedPassword, string Salt, string EnteredPassword)
+        {
+            if (HashedPassword == GenerateHash(EnteredPassword, Salt))
+                return true;
+            return false;
         }
     }
 }
