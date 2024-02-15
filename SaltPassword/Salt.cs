@@ -8,12 +8,17 @@ namespace SaltPassword
 {
     public class Salt : ISalt
     {
-        public string GenerateHash(string Password, string Salt)
+        public string GenerateSalt(int Length)
         {
-            throw new NotImplementedException();
+            string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            Random rnd = new Random();
+            string salt = "";
+            for (int i = 0; i < length; i++)
+                salt += chars[rnd.Next(0, chars.Length)];
+            return salt;
         }
 
-        public string GenerateSalt(int Length)
+        public string GenerateHash(string Password, string Salt)
         {
             throw new NotImplementedException();
         }
