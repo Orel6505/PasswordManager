@@ -9,8 +9,8 @@ namespace SaltPassword
     public class Password
     {
         private SecurityHelper Instance;
-        public string Salt { get; set; }
-        public string HashPassword { get; set; }
+        public string Salt { get; }
+        public string HashPassword { get; }
 
         /// <summary> Creates object of password which contains <see cref="Salt"/> and <see cref="HashPassword"/></summary>
         public Password(string Password)
