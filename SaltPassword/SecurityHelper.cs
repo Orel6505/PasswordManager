@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 
 namespace SaltPassword
 {
-    public class Salt : ISalt
+    public class SecurityHelper : ISecurityHelper
     {
-        Salt instance;
-        private Salt() {}
-        public Salt GetInstance
+        static SecurityHelper instance;
+        private SecurityHelper() {}
+        public static SecurityHelper GetInstance
         {
             get
             {
                 if (instance == null)
                 {
-                    this.instance = new Salt();
+                    instance = new SecurityHelper();
                 }
                 return instance;
             }

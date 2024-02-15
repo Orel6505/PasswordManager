@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SaltPassword
 {
-    public interface ISalt
+    public interface ISecurityHelper
     {
         string GenerateSalt(int Length);
         string GenerateHash(string Password, string Salt);
