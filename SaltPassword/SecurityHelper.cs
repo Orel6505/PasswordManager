@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,13 +26,18 @@ namespace SaltPassword
         /// <summary>Creates Random Salt for hashing password</summary>
         /// <returns>Returns random array of letters with length of the value given</returns>
         public string GenerateSalt(int Length)
-        {
-            string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            Random rnd = new Random();
-            string salt = "";
-            for (int i = 0; i < Length; i++)
-                salt += chars[rnd.Next(0, chars.Length)];
-            return salt;
+        {            
+            using (RandomNumberGenerator rnd = RandomNumberGenerator.Create())
+            {
+                byte[] sBytes = new byte[Length];
+                rnd.GetBytes(sBytes);
+                string salt = "";
+                foreach (byte saltByte in sBytes)
+                {
+                    salt += saltByte.ToString("x2");
+                }
+                return salt;
+            }
         }
 
         /// <summary>Takes <paramref name="Password"/> and <paramref name="Salt"/> and Hashes it with SHA256 Hash Alghoritm</summary>
