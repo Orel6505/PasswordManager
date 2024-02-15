@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SaltPassword
+namespace PasswordManager
 {
     public interface ISecurityHelper
     {

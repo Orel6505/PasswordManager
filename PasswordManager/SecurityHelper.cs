@@ -7,7 +7,7 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SaltPassword
+namespace PasswordManager
 {
     public class SecurityHelper : ISecurityHelper
     {
