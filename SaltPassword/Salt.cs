@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,7 +21,18 @@ namespace SaltPassword
 
         public string GenerateHash(string Password, string Salt)
         {
-            throw new NotImplementedException();
+            using (HashAlgorithm sha256 = SHA256.Create())
+            {
+                // ComputeHash - Generate hash from the provided Text and returns it as list of bytes
+                byte[] bhash = sha256.ComputeHash(Encoding.UTF8.GetBytes(Password + Salt));
+                // Convert byte[] to a string
+                string hash = "";
+                foreach(byte pbhash in bhash)
+                {
+                    hash+=pbhash.ToString("x2");
+                }
+                return hash.ToString();
+            }
         }
     }
 }
