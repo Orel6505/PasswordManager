@@ -13,7 +13,7 @@ namespace SaltPassword
             string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             Random rnd = new Random();
             string salt = "";
-            for (int i = 0; i < length; i++)
+            for (int i = 0; i < Length; i++)
                 salt += chars[rnd.Next(0, chars.Length)];
             return salt;
         }
