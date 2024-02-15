@@ -13,11 +13,11 @@ namespace SaltPassword
         public string HashPassword { get; }
 
         /// <summary> Creates object of password which contains <see cref="Salt"/> and <see cref="HashPassword"/></summary>
-        public Password(SecurityHelper Instance, string Password, int SaltLength)
+        public Password(SecurityHelper Instance, string EnteredPassword, int SaltLength)
         {
             this.Instance = Instance;
             this.Salt = Instance.GenerateSalt(SaltLength);
-            this.HashPassword = Instance.GenerateHash(Password, this.Salt);
+            this.HashPassword = Instance.GenerateHash(EnteredPassword, this.Salt);
         }
 
         /// <summary> Creates object of password which contains <see cref="Salt"/> and <see cref="HashPassword"/></summary>
