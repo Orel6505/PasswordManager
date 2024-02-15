@@ -14,16 +14,16 @@ namespace SaltPasswordTest
             //sha256 returns hash of 256 bits or 64 bytes
             //256bits == 64bytes
             SecurityHelper helper = SecurityHelper.GetInstance;
-            Password password = new Password("Orel6505");
+            Password password = new Password(helper,"Orel6505",64);
             
-            string TestPassword = Console.ReadLine();
-            if (password.HashPassword == helper.GenerateHash(TestPassword,password.Salt))
+            string EnteredPassword = Console.ReadLine();
+            if (password.IsSamePassword(EnteredPassword))
             {
                 Console.WriteLine("It worked");
             }
             else
             {
-                Console.WriteLine("Wrong Password");
+                Console.WriteLine("Invalid Credentials");
             }
         }
     }
