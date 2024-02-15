@@ -9,7 +9,20 @@ namespace SaltPassword
 {
     public class Salt : ISalt
     {
-        /// <summary>Creates Random Salt</summary>
+        Salt instance;
+        private Salt() {}
+        public Salt GetInstance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    this.instance = new Salt();
+                }
+                return instance;
+            }
+        }
+        /// <summary>Creates Random Salt for hashing password</summary>
         /// <returns>Returns random array of letters with length of the value given</returns>
         public string GenerateSalt(int Length)
         {
