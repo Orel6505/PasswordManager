@@ -1,7 +1,9 @@
-﻿using System;
+﻿using PasswordManager;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Web;
 using WebServerModels;
 
@@ -46,6 +48,18 @@ namespace WebServer.DAL
             {
                 dataReader.Read();
                 return this.modelFactory.UserModelCreator.CreateModel(dataReader);
+            }
+            //returns User
+        }
+
+        public Password ReadPassByUsername(SecurityHelper helper, string Username)
+        {
+            string sql = $"SELECT Users.PasswordSalt,Users.PasswordHash FROM Users WHERE Username=@Username";
+            this.AddParam("Username", Username); //prevents SQL Injection
+            using (IDataReader dataReader = this.dbContext.Read(sql))
+            {
+                dataReader.Read();
+                return this.modelFactory.PasswordModelCreator.CreateModel(dataReader, helper);
             }
             //returns User
         }
