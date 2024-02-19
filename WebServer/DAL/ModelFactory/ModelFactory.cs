@@ -9,6 +9,7 @@ namespace WebServer.DAL
     {
         UserModelCreator userModelCreator;
         UserTypeModelCreator userTypeModelCreator;
+        PasswordModelCreator passwordModelCreator;
 
         public UserModelCreator UserModelCreator
         {
@@ -31,6 +32,17 @@ namespace WebServer.DAL
                     this.userTypeModelCreator = new UserTypeModelCreator();
                 }
                 return userTypeModelCreator;
+            }
+        }
+        public PasswordModelCreator PasswordModelCreator
+        {
+            get
+            {
+                if (passwordModelCreator == null)
+                {
+                    this.passwordModelCreator = new PasswordModelCreator();
+                }
+                return passwordModelCreator;
             }
         }
     }
