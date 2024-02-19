@@ -122,16 +122,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="index.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="CommonParam.cs" />
+    <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="DAL\DbContext\DbContextcs.cs" />
     <Compile Include="DAL\DbContext\IDbContext.cs" />
     <Compile Include="DAL\DbContext\SQLiteContext.cs" />
     <Compile Include="DAL\ModelFactory\IModelCreator.cs" />
     <Compile Include="DAL\ModelFactory\ModelFactory.cs" />
+    <Compile Include="DAL\ModelFactory\PasswordModelCreator.cs" />
     <Compile Include="DAL\ModelFactory\UserModelCreator.cs" />
     <Compile Include="DAL\ModelFactory\UserTypeModelCreator.cs" />
     <Compile Include="DAL\Repositories\IRepository.cs" />
@@ -145,6 +150,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Database.db" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -153,11 +159,12 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\PasswordManager\PasswordManager.csproj">
+      <Project>{CF21B46A-558E-446C-862B-9623DAE654DB}</Project>
+      <Name>PasswordManager</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WebServerModels\WebServerModels.csproj">
       <Project>{bcf8e7de-6310-46b9-b063-08178021f142}</Project>
       <Name>WebServerModels</Name>
