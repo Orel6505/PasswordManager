@@ -6,8 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WebServer.DAL.DBContext;
-using WebServer.DAL.ModelFactory;
+using WebServer.DAL;
 using WebServerModels;
 
 namespace PasswordManagerTest
@@ -16,7 +15,7 @@ namespace PasswordManagerTest
     {
         static void Main()
         {
-            CheckModelFactory();
+            CheckUnitOfWork();
         }
         static void CheckPasswordManager()
         {
@@ -36,22 +35,14 @@ namespace PasswordManagerTest
             }
         }
 
-        static void CheckModelFactory()
+        static void CheckUnitOfWork()
         {
             SqliteDbContext sqliteDbContext = SqliteDbContext.GetInstance();
-            ModelFactory modelFactory = new ModelFactory();
-            string sql = "Select * from Users";
+            UnitOfWork unitOfWork = new UnitOfWork(sqliteDbContext);
             sqliteDbContext.OpenConnection();
-            IDataReader dataReader = sqliteDbContext.Read(sql);
-            List<User> users = new List<User>();
-            while (dataReader.Read() == true)
-            {
-                User user = modelFactory.UserModelCreator.CreateModel(dataReader);
-                users.Add(user);
-            }
-            sqliteDbContext.CloseConnection();
-            foreach (User o in users)
-                Console.WriteLine($"{o.PasswordHash}");
+            foreach (User o in unitOfWork.UserRepository.ReadAll())
+                Console.WriteLine($"{o.UserName}");
+
         }
     }
 }
