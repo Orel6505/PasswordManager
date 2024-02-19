@@ -114,6 +114,9 @@
     <Compile Include="DAL\DBContext\DbContextcs.cs" />
     <Compile Include="DAL\DBContext\IDbContext.cs" />
     <Compile Include="DAL\DBContext\SQLiteContext.cs" />
+    <Compile Include="DAL\ModelFactory\IModelCreator.cs" />
+    <Compile Include="DAL\ModelFactory\UserModelCreator.cs" />
+    <Compile Include="DAL\ModelFactory\UserTypeModelCreator.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -131,6 +134,12 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WebServerModels\WebServerModels.csproj">
+      <Project>{bcf8e7de-6310-46b9-b063-08178021f142}</Project>
+      <Name>WebServerModels</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
