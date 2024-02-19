@@ -127,20 +127,24 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="CommonParam.cs" />
-    <Compile Include="DAL\DBContext\DbContextcs.cs" />
-    <Compile Include="DAL\DBContext\IDbContext.cs" />
-    <Compile Include="DAL\DBContext\SQLiteContext.cs" />
+    <Compile Include="DAL\DbContext\DbContextcs.cs" />
+    <Compile Include="DAL\DbContext\IDbContext.cs" />
+    <Compile Include="DAL\DbContext\SQLiteContext.cs" />
     <Compile Include="DAL\ModelFactory\IModelCreator.cs" />
     <Compile Include="DAL\ModelFactory\ModelFactory.cs" />
     <Compile Include="DAL\ModelFactory\UserModelCreator.cs" />
     <Compile Include="DAL\ModelFactory\UserTypeModelCreator.cs" />
+    <Compile Include="DAL\Repositories\IRepository.cs" />
+    <Compile Include="DAL\Repositories\Repository.cs" />
+    <Compile Include="DAL\Repositories\UserRepository.cs" />
+    <Compile Include="DAL\Repositories\UserTypeRepository.cs" />
+    <Compile Include="DAL\UnitOfWork.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="libman.json" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
