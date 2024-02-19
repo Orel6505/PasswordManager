@@ -4,7 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Web;
 
-namespace WebServer.DAL.ModelFactory
+namespace WebServer.DAL
 {
     public interface IModelCreator<T>
     {

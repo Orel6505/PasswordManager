@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data.SQLite;
 
-namespace WebServer.DAL.DBContext
+namespace WebServer.DAL
 {
     public class SqliteDbContext : DbContext
     {

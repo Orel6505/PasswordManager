@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using WebServerModels;
 
-namespace WebServer.DAL.ModelFactory
+namespace WebServer.DAL
 {
     public class UserModelCreator : IModelCreator<User>
     {
