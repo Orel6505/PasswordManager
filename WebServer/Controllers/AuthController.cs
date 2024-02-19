@@ -15,6 +15,8 @@ namespace WebServer.Controllers
         [HttpGet]
         public bool CheckLogin(string Username, string password)
         {
+            if (Username == null || password == null)
+                return false;
             SqliteDbContext sqliteDbContext = SqliteDbContext.GetInstance();
             UnitOfWork unitOfWork = new UnitOfWork(sqliteDbContext);
             SecurityHelper helper = SecurityHelper.GetInstance;
