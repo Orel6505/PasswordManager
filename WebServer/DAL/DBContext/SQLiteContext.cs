@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Microsoft.Data.Sqlite;
+using System.Data.SQLite;
 
 namespace WebServer.DAL.DBContext
 {
@@ -12,7 +12,7 @@ namespace WebServer.DAL.DBContext
         static object blocker = new object();
         private SqliteDbContext()
         {
-            this.connection = new SqliteConnection();
+            this.connection = new SQLiteConnection();
             this.connection.ConnectionString = CommonParam.ConnectionString; // tells which type of sql we are connecting to and tell its directory
         }
 
