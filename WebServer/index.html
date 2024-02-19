@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link href="Style.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <title>Sign in</title>
+</head>
+<body>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+    <script>
+        function auth() {
+            var Usn = $('#UserName').val();
+            var Pas = $('#Password').val();
+            if (Usn === "" || Pas === "") {
+                $('#ResultLogin').text("Fields can't be empty");
+            }
+            else {
+                $.getJSON("Auth/?Username=" + Usn + "&password=" + Pas)
+                    .done(function (data) {
+                        if (data == true) {
+                            $('#ResultLogin').text("Welcome " + Usn);
+                        }
+                        else {
+                            $('#ResultLogin').text("Invalid Credentials");
+                        }
+                    })
+                    .fail(function (jqXHR, textStatus, err) {
+                        $('#ResultLogin').text('Error: ' + err);
+                    });
+            }
+        }
+    </script>
+    <div class="wraper">
+        <Main class="base">
+            <Header class="header">
+                <h1 class="sign">Sign in</h1>
+            </Header>
+            <hr />
+            <form>
+                <ul>
+                    <li class="item">
+                        <label class="lable">UserName</label><br>
+                        <input class="text" type="text" id="UserName" />
+                    </li>
+                    <li class="item">
+                        <label class="lable">Password</label><br>
+                        <input class="text" type="password" id="Password" />
+                    </li>
+                    <li class="item">
+                        <button class="button" type="button" value="Login" onclick="auth();">login</button>
+                    </li>
+                </ul>
+            </form>
+            <p id="ResultLogin" />
+        </Main>
+    </div>
+</body>
+</html>
