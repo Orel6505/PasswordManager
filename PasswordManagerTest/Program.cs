@@ -15,7 +15,7 @@ namespace PasswordManagerTest
     {
         static void Main()
         {
-            CheckUnitOfWork();
+            CheckUntilNow();
         }
         static void CheckPasswordManager()
         {
@@ -42,7 +42,24 @@ namespace PasswordManagerTest
             sqliteDbContext.OpenConnection();
             foreach (User o in unitOfWork.UserRepository.ReadAll())
                 Console.WriteLine($"{o.UserName}");
-
+        }
+        static void CheckUntilNow()
+        {
+            SecurityHelper helper = SecurityHelper.GetInstance;
+            SqliteDbContext sqliteDbContext = SqliteDbContext.GetInstance();
+            UnitOfWork unitOfWork = new UnitOfWork(sqliteDbContext);
+            sqliteDbContext.OpenConnection();
+            User user = unitOfWork.UserRepository.Read(2);
+            Password password = new Password(helper, user.PasswordSalt, user.PasswordHash);
+            string EnteredPassword = Console.ReadLine();
+            if (password.IsSamePassword(EnteredPassword))
+            {
+                Console.WriteLine("It worked");
+            }
+            else
+            {
+                Console.WriteLine("Invalid Credentials");
+            }
         }
     }
 }
